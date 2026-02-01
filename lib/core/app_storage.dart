@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'app_storage.dart';
-
 class AppStorage {
   static const _appBoxName = 'appBox';
   static const _themeMode = 'theme_mode';
@@ -15,7 +13,7 @@ class AppStorage {
   static const _password = 'password';
   static final Box _appBox = Hive.box(_appBoxName);
 
-  static init() async {
+  static Future<void> init() async {
     await Hive.initFlutter();
     await Hive.openBox(_appBoxName);
   }

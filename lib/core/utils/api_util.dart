@@ -14,7 +14,7 @@ class ApiUtils {
       getToken: () => getIt.get<AppStorage>().getToken(),
       interceptors: [RequestsInspectorInterceptor()],
       tokenType: ApiRequestOptions.bearer,
-      enableLog: true,
+      logLevel: ApiLogLevel.debug,
       onError: (error) {
         NotificationUtil.showError(error.message);
       },
