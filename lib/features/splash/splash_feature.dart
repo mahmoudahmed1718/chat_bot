@@ -21,5 +21,5 @@ class SplashFeature extends Feature {
       builder: (_, state) => const OnBoardingPage(),
     ),
   ];
-  void pushToOnBoarding() => pushReplacement(name: onBoarding);
+  void goToOnBoarding() => pushReplacement(name: onBoarding);
 }

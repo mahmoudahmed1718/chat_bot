@@ -1,4 +1,8 @@
+import 'package:chat_bot/core/app_storage.dart';
+import 'package:chat_bot/core/utils/assets.dart';
 import 'package:chat_bot/core/utils/styles.dart';
+import 'package:chat_bot/features/home/home_feature.dart';
+import 'package:chat_bot/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -13,7 +17,7 @@ class OnBoardingPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Gap(69),
+              Gap(79),
               Text('You Ai Assistant', style: Styles.fontStyle23),
               Gap(14),
               const Text(
@@ -29,20 +33,22 @@ class OnBoardingPage extends StatelessWidget {
 
               // Illustration Placeholder
               // Replace with Image.asset('assets/illustration.png')
-              // SvgPicture.asset(
-              //   Assets.assetsImagesOnBordingImage,
-              //   fit: BoxFit.fill,
-              // ),
-              Gap(66),
+              Gap(84),
+              Image.asset(Assets.assetsImagesOnBoardPngImage),
+
+              Gap(130),
               SizedBox(
                 width: double.infinity,
                 height: 56,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    AppStorage.to.setOnboardingSeen();
+                    HomeFeature.to.go();
+                  },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF3D6BFF),
+                    backgroundColor: AppColors.primaryColor,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(30),
                     ),
                   ),
                   child: const Stack(

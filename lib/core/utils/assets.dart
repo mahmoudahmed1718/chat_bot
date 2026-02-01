@@ -2,6 +2,10 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsImagesOnBoardPngImage
+  /// assets/images/on_board_png_image.png
+  static const String assetsImagesOnBoardPngImage = "assets/images/on_board_png_image.png";
+
   /// Assets for assetsImagesOnBordingImage
   /// assets/images/on_bording_image.svg
   static const String assetsImagesOnBordingImage = "assets/images/on_bording_image.svg";

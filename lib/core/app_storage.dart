@@ -1,3 +1,4 @@
+import 'package:chat_bot/config/app_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -11,8 +12,10 @@ class AppStorage {
   static const _defaultLocale = 'ar';
   static const _email = 'email';
   static const _password = 'password';
-  static final Box _appBox = Hive.box(_appBoxName);
+  static const _onboardingSeen = 'onboarding_seen';
 
+  static final Box _appBox = Hive.box(_appBoxName);
+  static AppStorage get to => getIt.get();
   static Future<void> init() async {
     await Hive.initFlutter();
     await Hive.openBox(_appBoxName);
@@ -68,5 +71,13 @@ class AppStorage {
 
   String? getPassword() {
     return _appBox.get(_password);
+  }
+
+  void setOnboardingSeen() async {
+    await _appBox.put(_onboardingSeen, true);
+  }
+
+  bool getOnboardingSeen() {
+    return _appBox.get(_onboardingSeen, defaultValue: false);
   }
 }
