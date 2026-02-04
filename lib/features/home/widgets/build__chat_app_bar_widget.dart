@@ -1,10 +1,10 @@
 import 'package:chat_bot/core/utils/assets.dart';
-import 'package:chat_bot/core/utils/styles.dart';
+import 'package:chat_bot/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
-AppBar buildChatAppBar(BuildContext context) {
+AppBar buildChatAppBar(BuildContext context) {s
   return AppBar(
     title: Row(
       children: [

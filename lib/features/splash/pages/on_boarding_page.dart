@@ -1,6 +1,6 @@
 import 'package:chat_bot/core/app_storage.dart';
 import 'package:chat_bot/core/utils/assets.dart';
-import 'package:chat_bot/core/utils/styles.dart';
+import 'package:chat_bot/core/utils/app_styles.dart';
 import 'package:chat_bot/features/home/home_feature.dart';
 import 'package:chat_bot/theme/app_colors.dart';
 import 'package:flutter/material.dart';

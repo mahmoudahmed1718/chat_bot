@@ -1,5 +1,5 @@
 import 'package:app_forms/app_forms.dart';
-import 'package:chat_bot/core/utils/styles.dart';
+import 'package:chat_bot/core/utils/app_styles.dart';
 import 'package:chat_bot/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
