@@ -15,7 +15,7 @@ AppBar buildChatAppBar(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            Text("ChatGPT", style: Styles.fontStyle23),
+            Text("ChatGPT", style: AppStyles.fontStyle23),
             SizedBox(height: 2),
             Row(
               children: [

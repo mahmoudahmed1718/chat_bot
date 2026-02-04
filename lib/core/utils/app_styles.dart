@@ -1,7 +1,7 @@
 import 'package:chat_bot/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
-abstract class Styles {
+abstract class AppStyles {
   static const fontStyle23 = TextStyle(
     fontSize: 23,
     fontFamily: 'Nunito',

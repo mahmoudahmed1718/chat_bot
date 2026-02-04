@@ -7,27 +7,25 @@ class BuildSuggetionWidget extends StatelessWidget {
   const BuildSuggetionWidget({super.key});
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Gap(18),
-          _sectionIcon(Icons.text_snippet),
-          _sectionTitle("Explain"),
-          _suggestion("Explain Quantum physics"),
-          _suggestion("What are wormholes explain like i am 5"),
-          Gap(24),
-          _sectionIcon(Icons.edit),
-          _sectionTitle("Write & edit"),
-          _suggestion("Write a tweet about global warming"),
-          _suggestion("Write a poem about flower and love"),
-          _suggestion("Write a rap song lyrics about"),
-          Gap(24),
-          _sectionIcon(Icons.translate),
-          _sectionTitle("Translate"),
-          _suggestion("How do you say \"how are you\" in korean?"),
-          _suggestion("Write a poem about flower and love"),
-        ],
-      ),
+    return Column(
+      children: [
+        Gap(18),
+        _sectionIcon(Icons.text_snippet),
+        _sectionTitle("Explain"),
+        _suggestion("Explain Quantum physics"),
+        _suggestion("What are wormholes explain like i am 5"),
+        Gap(24),
+        _sectionIcon(Icons.edit),
+        _sectionTitle("Write & edit"),
+        _suggestion("Write a tweet about global warming"),
+        _suggestion("Write a poem about flower and love"),
+        _suggestion("Write a rap song lyrics about"),
+        Gap(24),
+        _sectionIcon(Icons.translate),
+        _sectionTitle("Translate"),
+        _suggestion("How do you say \"how are you\" in korean?"),
+        _suggestion("Write a poem about flower and love"),
+      ],
     );
   }
 }
@@ -44,7 +42,7 @@ Widget _suggestion(String text) {
     child: Row(
       children: [
         Expanded(
-          child: Center(child: Text(text, style: Styles.fontStyle14)),
+          child: Center(child: Text(text, style: AppStyles.fontStyle14)),
         ),
       ],
     ),

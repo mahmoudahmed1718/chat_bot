@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
             // themeMode: ThemeMode.light,
             themeMode: getIt.get<AppStorage>().getThemeMode(),
             routerConfig: AppFeatures.router,
-            locale: Locale(getIt.get<AppStorage>().getLocale(), ''),
+            locale: Locale('en'),
             supportedLocales: AppLocalizations.supportedLocales,
 
             localizationsDelegates: const [
