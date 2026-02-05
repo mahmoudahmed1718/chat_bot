@@ -11,7 +11,7 @@ class HomeBloc extends Cubit<HomeState> {
 
   static HomeBloc to = getIt.get();
 
-  Future<void> getMessage({required String message}) async {
+  Future<void> getReponseMessage({required String message}) async {
     GetMessageAction()
         .listen(
           onStart: () => NotificationUtil.showLoading(),
