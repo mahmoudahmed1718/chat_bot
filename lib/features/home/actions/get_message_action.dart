@@ -21,8 +21,6 @@ class GeminiResponse {
   int? candidatesTokenCount;
   int? totalTokenCount;
   int? thoughtsTokenCount;
-
-  // Changed to List<dynamic> to match JSON structure
   List<dynamic>? candidates;
   String? modelVersion;
   String? responseId;
@@ -34,7 +32,6 @@ class GeminiResponse {
   bool get hasError => errorMessage != null;
 
   GeminiResponse.fromJson(Map<String, dynamic> json) {
-    // ---------- ERROR HANDLING ----------
     if (json['error'] != null) {
       errorCode = json['error']['code'];
       errorMessage = json['error']['message'];
@@ -42,8 +39,6 @@ class GeminiResponse {
       return;
     }
 
-    // ---------- SUCCESS MAPPING ----------
-    // Using explicit casting or null-aware operators for deep nesting
     final candidateList = json['candidates'] as List?;
     candidates = candidateList;
 
@@ -57,8 +52,6 @@ class GeminiResponse {
       finishReason = firstCandidate['finishReason'];
       index = firstCandidate['index'];
     }
-
-    // Mapping Usage Metadata
     final usage = json['usageMetadata'];
     if (usage != null) {
       promptTokenCount = usage['promptTokenCount'];

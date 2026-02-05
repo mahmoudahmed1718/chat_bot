@@ -1,4 +1,5 @@
 import 'package:chat_bot/core/utils/app_styles.dart';
+import 'package:chat_bot/features/home/bloc/home_bloc.dart';
 import 'package:chat_bot/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -32,19 +33,24 @@ class BuildSuggetionWidget extends StatelessWidget {
 
 // 🔹 Suggestion chip
 Widget _suggestion(String text) {
-  return Container(
-    margin: const EdgeInsets.only(bottom: 10),
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-    decoration: BoxDecoration(
-      color: AppColors.accentColor,
-      borderRadius: BorderRadius.circular(30),
-    ),
-    child: Row(
-      children: [
-        Expanded(
-          child: Center(child: Text(text, style: AppStyles.fontStyle14)),
-        ),
-      ],
+  return InkWell(
+    onTap: () async {
+      await HomeBloc.to.getReponseMessage(message: text);
+    },
+    child: Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      decoration: BoxDecoration(
+        color: AppColors.accentColor,
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Center(child: Text(text, style: AppStyles.fontStyle14)),
+          ),
+        ],
+      ),
     ),
   );
 }

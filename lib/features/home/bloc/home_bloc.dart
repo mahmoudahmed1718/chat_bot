@@ -24,7 +24,7 @@ class HomeBloc extends Cubit<HomeState> {
 
           onError: (error) => NotificationUtil.showError(error.message),
         )
-        .withHeader('x-goog-api-key', 'AIzaSyCfCTGmK-ItAxtbCBJ929XpxSi3dGCO6TE')
+        .withHeader('x-goog-api-key', 'AIzaSyAY_T-JtdQZth46idM6-s82_cDLto9Mhgg')
         .withHeader('contentType', 'application/json')
         .whereMap({
           "contents": [
