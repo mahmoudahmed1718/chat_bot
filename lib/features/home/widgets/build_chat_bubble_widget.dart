@@ -1,4 +1,3 @@
-import 'package:chat_bot/app/models/gemine_model/gemine_model.dart';
 import 'package:chat_bot/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,21 +5,23 @@ import 'package:gap/gap.dart';
 
 class ChatBubble extends StatelessWidget {
   final bool isUser;
+  final String message; // Change this from GemineModel to String
 
   const ChatBubble({
     super.key,
-
     required this.isUser,
-    required this.geminiModel,
+    required this.message, // Use the String here
   });
-  final GemineModel geminiModel;
+
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
-
+        mainAxisAlignment: isUser
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         children: [
           if (!isUser)
             SvgPicture.asset(
@@ -28,7 +29,7 @@ class ChatBubble extends StatelessWidget {
               height: 17.17,
               width: 11,
             ),
-          Gap(6),
+          const Gap(6),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 6),
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -49,7 +50,7 @@ class ChatBubble extends StatelessWidget {
               ),
             ),
             child: Text(
-              geminiModel.candidates?.first.content?.parts?.first.text ?? '',
+              message, // Use the string directly
               style: TextStyle(
                 color: isUser ? Colors.white : Colors.black87,
                 fontSize: 14,
