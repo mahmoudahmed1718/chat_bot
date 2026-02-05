@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
-AppBar buildChatAppBar(BuildContext context) {s
+AppBar buildChatAppBar(BuildContext context) {
   return AppBar(
     title: Row(
       children: [

@@ -4,13 +4,12 @@ import 'package:requests_inspector/requests_inspector.dart';
 import 'package:chat_bot/app/utils/notification_util.dart';
 import 'package:chat_bot/config/app_config.dart';
 import 'package:chat_bot/core/app_storage.dart';
-import 'package:chat_bot/core/extensions/context_extension.dart';
 import 'package:flutter/widgets.dart';
 
 class ApiUtils {
   ApiUtils.init(BuildContext context) {
     ApiRequestOptions.instance?.config(
-      baseUrl: 'BASE_URL_HERE',
+      baseUrl: 'https://generativelanguage.googleapis.com/',
       getToken: () => getIt.get<AppStorage>().getToken(),
       interceptors: [RequestsInspectorInterceptor()],
       tokenType: ApiRequestOptions.bearer,
@@ -22,7 +21,7 @@ class ApiUtils {
         //Force logout user form app
         getIt.get<AppStorage>().setToken(null);
       },
-      defaultHeaders: {'Content-Language': context.locale.languageCode},
+      defaultHeaders: {'Content-Language': 'en'},
     );
   }
 
