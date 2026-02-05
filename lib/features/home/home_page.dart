@@ -6,6 +6,7 @@ import 'package:chat_bot/features/home/widgets/build_input_text.dart';
 import 'package:chat_bot/features/home/widgets/build_suggetion_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,28 +25,33 @@ class _HomePageState extends State<HomePage> {
         child: BlocBuilder<HomeBloc, HomeState>(
           bloc: HomeBloc.to,
           builder: (context, state) {
-            return Column(
-              children: [
-                Expanded(
-                  child: state.isChatting
-                      ? ListView.builder(
-                          itemCount: state.geminiModel?.candidates?.length ?? 0,
-                          itemBuilder: (context, index) {
-                            return ChatBubble(
-                              isUser: false,
-                              geminiModel: state.geminiModel!,
-                            );
-                          },
-                        )
-                      : const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          child: SingleChildScrollView(
-                            child: BuildSuggetionWidget(),
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: state.isChatting
+                        ? ListView.builder(
+                            itemCount:
+                                state.geminiModel?.candidates?.length ?? 0,
+                            itemBuilder: (context, index) {
+                              return ChatBubble(
+                                isUser: false,
+                                geminiModel: state.geminiModel!,
+                              );
+                            },
+                          )
+                        : const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16),
+                            child: SingleChildScrollView(
+                              child: BuildSuggetionWidget(),
+                            ),
                           ),
-                        ),
-                ),
-                BuildInputText(),
-              ],
+                  ),
+                  BuildInputText(),
+                  const Gap(16),
+                ],
+              ),
             );
           },
         ),

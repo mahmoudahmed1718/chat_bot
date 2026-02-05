@@ -28,7 +28,7 @@ class _BuildInputTextState extends State<BuildInputText> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: Material(
         elevation: 10,
         borderRadius: BorderRadius.circular(30),
@@ -85,6 +85,7 @@ class _BuildInputTextState extends State<BuildInputText> {
                               await HomeBloc.to.getReponseMessage(
                                 message: text,
                               );
+
                               print("Send: $text");
 
                               _formKey.currentState?.reset();
