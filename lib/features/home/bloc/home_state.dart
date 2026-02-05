@@ -6,11 +6,11 @@ class HomeState extends Equatable {
   final String? error;
   final bool? isLoading;
   final GeminiModel? geminiModel;
-  HomeState copyWith(
+  HomeState copyWith({
     String? error,
     bool? isLoading,
     GeminiModel? geminiModel,
-  ) => HomeState(
+  }) => HomeState(
     error: error ?? this.error,
     isLoading: isLoading ?? this.isLoading,
     geminiModel: geminiModel ?? this.geminiModel,
