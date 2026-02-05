@@ -1,5 +1,6 @@
 import 'package:app_forms/app_forms.dart';
 import 'package:chat_bot/core/utils/app_styles.dart';
+import 'package:chat_bot/features/home/bloc/home_bloc.dart';
 import 'package:chat_bot/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -51,7 +52,7 @@ class _BuildInputTextState extends State<BuildInputText> {
                       ),
                       border: InputBorder.none,
                     ),
-                    onChanged: (value) {
+                    onChanged: (value) async {
                       hasText.value = value != null && value.trim().isNotEmpty;
                     },
                   ),
@@ -76,12 +77,14 @@ class _BuildInputTextState extends State<BuildInputText> {
                         color: active ? AppColors.primaryColor : Colors.grey,
                       ),
                       onPressed: active
-                          ? () {
+                          ? () async {
                               final text = _formKey
                                   .currentState
                                   ?.fields['message']
                                   ?.value;
-
+                              await HomeBloc.to.getReponseMessage(
+                                message: text,
+                              );
                               print("Send: $text");
 
                               _formKey.currentState?.reset();

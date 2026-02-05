@@ -1,7 +1,10 @@
+import 'package:chat_bot/features/home/bloc/home_bloc.dart';
+import 'package:chat_bot/features/home/bloc/home_state.dart';
 import 'package:chat_bot/features/home/widgets/build__chat_app_bar_widget.dart';
 import 'package:chat_bot/features/home/widgets/build_input_text.dart';
 import 'package:chat_bot/features/home/widgets/build_suggetion_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,16 +20,21 @@ class _HomePageState extends State<HomePage> {
       appBar: buildChatAppBar(context),
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: const BuildSuggetionWidget(),
-              ),
-            ),
-            BuildInputText(),
-          ],
+        child: BlocBuilder<HomeBloc, HomeState>(
+          bloc: HomeBloc.to,
+          builder: (context, state) {
+            return Column(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: const BuildSuggetionWidget(),
+                  ),
+                ),
+                BuildInputText(),
+              ],
+            );
+          },
         ),
       ),
     );

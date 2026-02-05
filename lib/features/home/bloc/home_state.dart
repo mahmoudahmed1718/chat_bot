@@ -1,11 +1,20 @@
 import 'package:chat_bot/app/data/gemine_model.dart';
+// Import your ChatMessage model
 import 'package:equatable/equatable.dart';
 
 class HomeState extends Equatable {
-  const HomeState({this.error, this.isLoading, this.geminiModel});
+  const HomeState({
+    this.error,
+    this.isLoading = false,
+    this.geminiModel,
+    // Initialize as an empty list
+  });
+
   final String? error;
   final bool? isLoading;
   final GeminiModel? geminiModel;
+  // Added this to track chat history
+
   HomeState copyWith({
     String? error,
     bool? isLoading,
