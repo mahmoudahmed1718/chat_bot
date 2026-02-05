@@ -1,4 +1,4 @@
-import 'package:chat_bot/app/data/gemine_model.dart';
+import 'package:chat_bot/app/models/gemine_model/gemine_model.dart';
 import 'package:chat_bot/app/utils/notification_util.dart';
 import 'package:chat_bot/config/app_config.dart';
 import 'package:chat_bot/features/home/actions/get_message_action.dart';
@@ -12,18 +12,19 @@ class HomeBloc extends Cubit<HomeState> {
   static HomeBloc to = getIt.get();
 
   Future<void> getReponseMessage({required String message}) async {
+    emit(state.copyWith(isChatting: true));
     GetMessageAction()
         .listen(
           onStart: () => NotificationUtil.showLoading(),
           onDone: () => NotificationUtil.hideLoading(),
 
           onSuccess: (response) {
-            emit(state.copyWith(geminiModel: GeminiModel.fromJson(response!)));
+            emit(state.copyWith(geminiModel: GemineModel.fromJson(response!)));
           },
 
           onError: (error) => NotificationUtil.showError(error.message),
         )
-        .withHeader('x-goog-api-key', 'AIzaSyDaZlnenUBpG5NKbdyDj1PiHKTJMvm6eG4')
+        .withHeader('x-goog-api-key', 'AIzaSyCfCTGmK-ItAxtbCBJ929XpxSi3dGCO6TE')
         .withHeader('contentType', 'application/json')
         .whereMap({
           "contents": [

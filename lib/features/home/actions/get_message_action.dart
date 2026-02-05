@@ -22,6 +22,8 @@ class GeminiResponse {
   int? totalTokenCount;
   int? thoughtsTokenCount;
 
+  // Changed to List<dynamic> to match JSON structure
+  List<dynamic>? candidates;
   String? modelVersion;
   String? responseId;
 
@@ -32,7 +34,7 @@ class GeminiResponse {
   bool get hasError => errorMessage != null;
 
   GeminiResponse.fromJson(Map<String, dynamic> json) {
-    // ---------- ERROR ----------
+    // ---------- ERROR HANDLING ----------
     if (json['error'] != null) {
       errorCode = json['error']['code'];
       errorMessage = json['error']['message'];
@@ -40,15 +42,30 @@ class GeminiResponse {
       return;
     }
 
-    // ---------- SUCCESS ----------
-    text = json['candidates']?[0]?['content']?['parts']?[0]?['text'];
-    finishReason = json['candidates']?[0]?['finishReason'];
-    index = json['candidates']?[0]?['index'];
-    role = json['candidates']?[0]?['content']?['role'];
-    promptTokenCount = json['usageMetadata']?['promptTokenCount'];
-    candidatesTokenCount = json['usageMetadata']?['candidatesTokenCount'];
-    totalTokenCount = json['usageMetadata']?['totalTokenCount'];
-    thoughtsTokenCount = json['usageMetadata']?['thoughtsTokenCount'];
+    // ---------- SUCCESS MAPPING ----------
+    // Using explicit casting or null-aware operators for deep nesting
+    final candidateList = json['candidates'] as List?;
+    candidates = candidateList;
+
+    if (candidateList != null && candidateList.isNotEmpty) {
+      final firstCandidate = candidateList[0];
+      final content = firstCandidate['content'];
+      final parts = content?['parts'] as List?;
+
+      text = (parts != null && parts.isNotEmpty) ? parts[0]['text'] : null;
+      role = content?['role'];
+      finishReason = firstCandidate['finishReason'];
+      index = firstCandidate['index'];
+    }
+
+    // Mapping Usage Metadata
+    final usage = json['usageMetadata'];
+    if (usage != null) {
+      promptTokenCount = usage['promptTokenCount'];
+      candidatesTokenCount = usage['candidatesTokenCount'];
+      totalTokenCount = usage['totalTokenCount'];
+      thoughtsTokenCount = usage['thoughtsTokenCount'];
+    }
 
     modelVersion = json['modelVersion'];
     responseId = json['responseId'];

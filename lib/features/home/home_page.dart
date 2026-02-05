@@ -1,6 +1,7 @@
 import 'package:chat_bot/features/home/bloc/home_bloc.dart';
 import 'package:chat_bot/features/home/bloc/home_state.dart';
 import 'package:chat_bot/features/home/widgets/build__chat_app_bar_widget.dart';
+import 'package:chat_bot/features/home/widgets/build_chat_bubble_widget.dart';
 import 'package:chat_bot/features/home/widgets/build_input_text.dart';
 import 'package:chat_bot/features/home/widgets/build_suggetion_widget.dart';
 import 'package:flutter/material.dart';
@@ -26,10 +27,22 @@ class _HomePageState extends State<HomePage> {
             return Column(
               children: [
                 Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: const BuildSuggetionWidget(),
-                  ),
+                  child: state.isChatting
+                      ? ListView.builder(
+                          itemCount: state.geminiModel?.candidates?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return ChatBubble(
+                              isUser: false,
+                              geminiModel: state.geminiModel!,
+                            );
+                          },
+                        )
+                      : const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: SingleChildScrollView(
+                            child: BuildSuggetionWidget(),
+                          ),
+                        ),
                 ),
                 BuildInputText(),
               ],
